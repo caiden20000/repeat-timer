@@ -2,14 +2,14 @@ html {
     font-family: sans-serif;
   }
   
-  #settings {
+  .settings-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
-  #settings input {
+  .settings-wrapper input {
     width: 100%;
   }
   

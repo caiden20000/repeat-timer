@@ -9,50 +9,50 @@ var seconds = null;
 var initialTime = null;
 
 submitButton.addEventListener("click", e => {
-	const duration = parseInt(durationInput.value);
-  if (isNaN(duration)) {
-  	clearSettings();
-  	showModal();
-    return;
-  }
-	startTimer(duration);
-  hideModal();
+    const duration = parseInt(durationInput.value);
+    if (isNaN(duration)) {
+        clearSettings();
+        showModal();
+        return;
+    }
+    startTimer(duration);
+    hideModal();
 })
 
 function showModal() {
-	settingsElement.showModal();
+    settingsElement.showModal();
 }
 
 function hideModal() {
-	settingsElement.close();
+    settingsElement.close();
 }
 
 function clearSettings() {
-	durationInput.value = "";
+    durationInput.value = "";
 }
 
 function startTimer(minutes) {
-	console.log("Starting timer with " + minutes + " minutes.");
-  seconds = minutes * 60;
-  initialTime = seconds;
-  timerInterval = setInterval(() => {
-  	if (seconds <= 0) {
-    	timerRollover();
-      seconds = initialTime;
-    }
-  	setTime(seconds);
-    seconds --;
-  }, 1000)
+    console.log("Starting timer with " + minutes + " minutes.");
+    seconds = minutes * 60;
+    initialTime = seconds;
+    timerInterval = setInterval(() => {
+        if (seconds < 0) {
+            timerRollover();
+            seconds = initialTime;
+        }
+        setTime(seconds);
+        seconds--;
+    }, 1000);
 }
 
 function setTime(seconds) {
-	const timeString = new Date(1000 * seconds).toISOString().substr(11, 8);
-  displayElement.immerHTML = timeString;
-  titleElement.innerHTML = timeString;
+    const timeString = new Date(1000 * seconds).toISOString().substr(11, 8);
+    displayElement.innerHTML = timeString;
+    titleElement.innerHTML = timeString;
 }
 
 function timerRollover() {
-
+    console.log("Rollover!");
 }
 
 showModal();
